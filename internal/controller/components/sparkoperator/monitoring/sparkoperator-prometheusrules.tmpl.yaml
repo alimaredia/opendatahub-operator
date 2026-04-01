@@ -50,7 +50,7 @@ spec:
       - name: SLOs - Spark Operator
         rules:
         - expr: |
-            absent(up{job="spark-operator"}) * 0 or vector(1)
+            absent(up{job="Spark Operator"}) * 0 or vector(1)
           labels:
             instance: spark-operator-controller-manager
           record: probe_success

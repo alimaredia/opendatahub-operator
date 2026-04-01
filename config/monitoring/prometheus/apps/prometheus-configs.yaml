@@ -291,6 +291,28 @@ data:
           target_label: __address__
           replacement: ${1}:8080
 
+    - job_name: 'Spark Operator'
+      honor_labels: true
+      metrics_path: /metrics
+      scheme: http
+      kubernetes_sd_configs:
+        - role: pod
+          namespaces:
+            names:
+              - <odh_application_namespace>
+          selectors:
+          - role: pod
+            label: 'app.kubernetes.io/name=spark-operator'
+      relabel_configs:
+        - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+          regex: ^(spark-operator)$
+          target_label: kubernetes_name
+          action: keep
+        - source_labels: [__address__]
+          regex: (.+):(\d+)
+          target_label: __address__
+          replacement: ${1}:8080
+
     - job_name: 'TrustyAI Controller Manager'
       honor_labels: true
       metrics_path: /metrics
