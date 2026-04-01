@@ -17,7 +17,7 @@ spec:
               sum(probe_success:burnrate1h{instance=~"spark-operator-controller-manager"}) by (instance) > (14.40 * (1-0.98000))
             for: 2m
             labels:
-              severity: warning
+              severity: critical
               instance: spark-operator-controller-manager
     
           - alert: Spark Operator Probe Success Burn Rate
@@ -30,7 +30,7 @@ spec:
               sum(probe_success:burnrate6h{instance=~"spark-operator-controller-manager"}) by (instance) > (6.00 * (1-0.98000))
             for: 15m
             labels:
-              severity: warning
+              severity: critical
               instance: spark-operator-controller-manager
     
           - alert: Spark Operator Probe Success Burn Rate
